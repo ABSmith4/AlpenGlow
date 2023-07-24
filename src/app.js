@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express';
 // import dotenv from 'dotenv';
 import cors from 'cors';
@@ -19,5 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/api', indexRouter);
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
 
 export default app;

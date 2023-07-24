@@ -27,6 +27,6 @@
     "import/prefer-default-export": [0]
   },
   "settings": {
-    "import/core-modules": ["debug", "cookie-parser", "supertest", "chai", "sinon-chai"]
+    "import/core-modules": ["debug", "cookie-parser", "supertest", "chai", "sinon-chai", "sequelize"]
   }
 }

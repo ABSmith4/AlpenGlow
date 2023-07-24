@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const auth = (req, res, next) => {
+const verifyAuth = (req, res, next) => {
   const token = req.header('x-token');
   if (!token) {
     return res.status(401).json({
@@ -21,4 +21,4 @@ const auth = (req, res, next) => {
   return false;
 };
 
-export default auth;
+export default verifyAuth;

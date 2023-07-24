@@ -9,6 +9,7 @@
     "start": "node ./src/bin/www",
     "startdev": "nodemon --exec babel-node ./src/bin/www",
     "dev": "nodemon app",
+    "dev2": "NODE_ENV=development node app.js"
     "test": "c8 --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register",
     "coverage": "c8 report --reporter=text-lcov | coveralls",
     "lint": "./node_modules/.bin/eslint ./src",
@@ -20,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "debug": "^4.3.4",
@@ -27,7 +29,10 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
-    "postgres": "^3.3.3"
+    "pg": "^8.11.0",
+    "pg-hstore": "^2.3.4",
+    "postgres": "^3.3.3",
+    "sequelize": "^6.31.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
