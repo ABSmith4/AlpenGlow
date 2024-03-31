@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-console */
 import fs from 'fs';
 import path from 'path';
@@ -62,34 +65,34 @@ fs.readdirSync(__dirname)
 
 // Model/sql table relationships
 
-//Note: tables with multiple foreign keys are an odd concept
+// Note: tables with multiple foreign keys are an odd concept
 
 // User Table
 userModels.hasMany(userAddressModels); // User has many UserAddress
 userModels.hasMany(VisitedResortsModels); // User has many VisitedResorts
 userModels.hasMany(skiTripsModels); // User has many ski trips
 userModels.hasMany(resortReviewsModels); // User has many resort reviews
+userModels.hasMany(authTokensModels);
 
-//User Addrress Table
+// User Addrress Table
 userAddressModels.belongsTo(userModels); // UserAddress belongs to User
 
-//Ski Trip Table
+// Ski Trip Table
 skiTripsModels.belongsTo(userModels); // Ski trips belongs to user
 
-
-//Visited Resorts Table
+// Visited Resorts Table
 VisitedResortsModels.belongsTo(userModels); // VisitedResorts belongs to User (FK)
 VisitedResortsModels.belongsTo(ResortModels); // Visited Resorts belongs to Resorts (FK)
 
-// Resort Table 
-Resort.hasOne(VisitedResortsModels); // Resort has many VisitedResorts      ??? I think this is it ???
+// Resort Table
+ResortModels.hasOne(VisitedResortsModels); // Resort has many VisitedResorts      ??? I think this is it ???
 ResortModels.hasOne(weatherReportModels);
 ResortModels.hasOne(resortMountainInformationModels);
 ResortModels.hasMany(resortReviewsModels); // Resort has many reviews
 ResortModels.hasMany(resortLiftsModels); // Resort has many ResortLifts
 ResortModels.hasMany(resortTrailsModels); // Resort has many ResortTrails
 
-//Resort Mountain Information Table
+// Resort Mountain Information Table
 resortMountainInformationModels.belongsTo(ResortModels); // Resort belongs to ResortMountainInformation
 
 // Resort Reviews Table
@@ -102,10 +105,8 @@ weatherReportModels.belongsTo(ResortModels); // WeatherReport belongs to Resort 
 // Resort Lifts Table
 resortLiftsModels.belongsTo(ResortModels); // ResortLifts belongs to Resort (FK)
 
-//Resort trails models
+// Resort trails models
 resortTrailsModels.belongsTo(ResortModels); // ResortTrails belongs to Resort
-
-
 
 // Export the Sequelize instance and models for use in other parts of the application
 export default { sequelize, ...db };

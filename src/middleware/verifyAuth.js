@@ -1,24 +1,36 @@
-import jwt from 'jsonwebtoken';
+import Jwt from 'jsonwebtoken';
 
-const verifyAuth = (req, res, next) => {
-  const token = req.header('x-token');
+const verifyToken = (req, res, next) => {
+  const token = req.header('Authorization');
   if (!token) {
     return res.status(401).json({
-      msg: 'no Token, access denied',
+      error: 'Authorization token not provided, access denied',
       success: false,
     });
   }
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECTET);
+    const decoded = Jwt.verify(token, process.env.JWT_SECTET);
+    if (!decoded.id) {
+      return res.status(403).json({
+        error: 'Invalid token: User ID not found in token',
+        success: false,
+      });
+    }
     req.user = decoded;
     next();
   } catch (err) {
-    res.status(400).json({
-      msg: 'no Token, access denied',
+    if (err.name === 'JsonWebTokenError') {
+      return res.status(403).json({
+        error: 'Invalid token',
+        success: false,
+      });
+    }
+    return res.status(500).json({
+      error: 'Internal server error',
       success: false,
     });
   }
   return false;
 };
 
-export default verifyAuth;
+export default verifyToken;

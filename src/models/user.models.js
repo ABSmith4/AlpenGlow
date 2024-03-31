@@ -6,13 +6,19 @@ export default (sequelize, DataTypes) => {
       autoIncrement: true
     },
     username: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false
     },
     email: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false
     },
     password: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false
     },
     total_days_shredding: {
       type: DataTypes.INTEGER
